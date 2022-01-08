@@ -1,9 +1,29 @@
 const router = require("express").Router();
 // GET route main
 router.get("/", async (req, res) => {
-  // Add a comment describing the purpose of the render method
-  // This method is rendering the 'all' Handlebars.js template. This is how we connect each route to the correct template.
+  // This method is rendering the 'home' Handlebars.js template
   res.render("home");
 });
 
 module.exports = router;
+
+/*
+// Login route
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("login");
+});
+
+// Logout route
+router.get("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy();
+    res.redirect("/");
+    return;
+  }
+  res.render("login");
+});
+*/
