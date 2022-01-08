@@ -38,7 +38,7 @@ app.use(require("./controllers/index"));
 app.use(routes);
 
 // Starts database and the server to begin listening
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log("Server listening on: http://localhost:" + PORT);
   });
