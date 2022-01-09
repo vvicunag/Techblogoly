@@ -15,7 +15,7 @@ const postData = [
     user_id: 2,
   },
   {
-    post_content: "What kind of programming do you thin they use on Teslas??",
+    post_content: "What kind of programming do you think they use on Teslas??",
     user_id: 3,
   },
 ];
