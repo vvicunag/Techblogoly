@@ -2,25 +2,26 @@ const { Comment } = require("../models");
 
 const commentData = [
   {
-    comment: "I like the new Playstation!",
-    user_id: 1,
-    time: "1/1/2022",
-  },
-  {
-    comment: "I am thinking on learning Python... what do you think?",
-    user_id: 1,
-    time: "3/1/2022",
-  },
-  {
-    comment:
-      "Which API is your favorite??? There is some cool stuff out there!",
+    comment_content:
+      "Me too! :) Is there a game in particular that you liked???",
     user_id: 2,
-    time: "2/1/2022",
+    post_id: 1,
   },
   {
-    comment: "What kind of programming do you thin they use on Teslas??",
+    comment_content:
+      "Personally, I started my coding journey by learning javascript. I find it more versatile!",
     user_id: 3,
-    time: "2/1/2022",
+    post_id: 2,
+  },
+  {
+    comment_content: "Python rocks!",
+    user_id: 2,
+    post_id: 2,
+  },
+  {
+    comment_content: "Not sure... would be interesting to find out!",
+    user_id: 1,
+    post_id: 4,
   },
 ];
 

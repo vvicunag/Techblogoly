@@ -1,13 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Comment extends Model {
-  /*checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }*/
-}
+class Post extends Model {}
 
-Comment.init(
+Post.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,7 +11,7 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    comment_content: {
+    post_content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -23,13 +19,6 @@ Comment.init(
       type: DataTypes.INTEGER,
       references: {
         model: "user",
-        key: "id",
-      },
-    },
-    post_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "post",
         key: "id",
       },
     },
@@ -44,8 +33,8 @@ Comment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "comment",
+    modelName: "post",
   }
 );
 
-module.exports = Comment;
+module.exports = Post;
