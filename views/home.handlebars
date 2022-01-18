@@ -1,15 +1,12 @@
-   
-   
-   <!--
-        {{#each gallery.paintings as |painting|}}
-    <section class="card">
-      <a href="/painting/{{id}}">
-        <header>{{title}}</header>
+{{#each posts as |post|}}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{user_id}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Posted on: {{created_on}}</h6>
+      <p class="card-text">{{post_content}}</p>
+      <a href="#" class="card-link">Comment</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
 
-        <div class="card-body">
-          <img src="/images/{{filename}}" alt="{{description}}">
-          <p>By: {{artist}}</p>
-        </div>
-      </a>
-    </section>
-    {{/each}}
+{{/each}}
