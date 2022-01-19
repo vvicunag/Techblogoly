@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
         {
           model: Comment,
           attributes: ["comment_content", "user_id", "created_on"],
+          include: [{model: User, attributes: ["username"],}]
         },
         {
           model: User,
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
       ],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(posts);
+    console.log(posts[0].comments);
     res.render("home", { posts });
   } catch {
     console.log(err);

@@ -1,5 +1,5 @@
 {{#each posts as |post|}}
-  <div class="card" style="width: 18rem;">
+  <div class="card shadow p-3 mb-5 bg-body rounded" style="">
     <div class="card-body">
       <h5 class="card-title">{{user.username}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">Posted on: {{created_on}}</h6>
@@ -8,12 +8,23 @@
       <a href="#" class="card-link">Another link</a>
     </div>
     {{#each comments as |comment|}}
+      <div class="card" style="">
       <div class="card-body">
-        <h5 class="card-title">{{user_id}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Posted on:{{created_on}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Comment by {{user.username}} on: {{created_on}}</h6>
         <p class="card-text">{{comment_content}}</p>
       </div>
+      </div>
+      <br>
     {{/each}}
   </div>
 
 {{/each}}
+
+<!--[
+  {
+    comment_content: 'Me too! :) Is there a game in particular that you liked???',
+    user_id: 2,
+    created_on: 2022-01-18T06:44:56.000Z,
+    user: { id: 2, username: 'julius', password: 'pocionmagica$' }
+  }
+]-->
