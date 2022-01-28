@@ -39,11 +39,18 @@ router.post("/login", async (req, res) => {
         username: req.body.username,
       },
     });
+    //checks user
     if (!user) {
-      res.status(401).json({ message: "Incorrect username or password." });
+      res.status(401).json({ message: "Incorrect username" });
       return
     };
-    return res.status(200).json({ user, message: "You are logged in!" });
+    // checks password
+    const validPassword = user.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({validPassword, message: "Incorrect password." });
+      return;
+    }
+    return res.status(200).json({message: "You are logged in!" });
   }
   catch (error) {
     console.error(error.message);
