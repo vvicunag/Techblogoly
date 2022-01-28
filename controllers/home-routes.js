@@ -26,4 +26,14 @@ router.get("/", async (req, res) => {
   }
 });
 
+//get request to render login page
+router.get("/login", (req, res) => {
+  res.render("login");
+})
+
+// post request to log in
+router.post("/login", async (req, res) => {
+  
+})
+
 module.exports = router;
