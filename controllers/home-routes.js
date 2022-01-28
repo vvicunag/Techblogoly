@@ -33,7 +33,55 @@ router.get("/login", (req, res) => {
 
 // post request to log in
 router.post("/login", async (req, res) => {
-  
+  try {
+    const user = await User.findOne({
+      where: {
+        username: req.body.username,
+      },
+    });
+    if (!user) {
+      res.status(401).json({ message: "Incorrect username or password." });
+      return
+    };
+    return res.status(200).json({ user, message: "You are logged in!" });
+  }
+  catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: "Failed login." });
+  };
 })
 
+
+
+//------------------
+// const userLogin = async (req, res) => {
+//   try {
+//     const user = await User.findOne({
+//       where: {
+//         user_name: req.body.user_name,
+//       },
+//     });
+//     if (!user) {
+//       res.status(401).json({ message: "Incorrect username or password." });
+//       return;
+//     }
+//     // Check if password correct
+//     const validPassword = user.checkPassword(req.body.password);
+//     if (!validPassword) {
+//       res.status(400).json({ message: "Incorrect username or password." });
+//       return;
+//     }
+//     req.session.save(() => {
+//       req.session.loggedIn = true;
+//       req.session.userId = user.id;
+//       req.session.user_name = user.user_name;
+//       return res.status(200).json({ user, message: "You are logged in!" });
+//     });
+//   } catch (error) {
+//     console.error(error.message);
+//     return res.status(500).json({ error: "Failed login." });
+//   }
+// };
+
+//----------------
 module.exports = router;
