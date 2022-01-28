@@ -31,6 +31,17 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// get request to logout
+router.get("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      return res.status(200).json({data: "Logout successful."});
+    });
+  } else {
+    return res.status(500).json({data: "Logout failed."})
+  }
+});
+
 // post request to log in
 router.post("/login", async (req, res) => {
   try {
@@ -51,9 +62,9 @@ router.post("/login", async (req, res) => {
       return;
     }
     req.session.save(() => {
-    req.session.loggedIn = true;
-    req.session.userId = user.id;
-    req.session.username = user.username;
+      req.session.loggedIn = true;
+      req.session.userId = user.id;
+      req.session.username = user.username;
     });
     return res.status(200).json({message: "You are logged in!" });
   }
