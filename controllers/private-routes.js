@@ -9,7 +9,7 @@ router.get("/dashboard", async (req, res) => {
       const id = 1
       const dashboardData = await User.findByPk(id, {
         attributes: { exclude: ['password'] },
-        include: [{model: Post}],
+        include: [{model: Post}, {model: Comment}],
       });
       userData = dashboardData.dataValues;
       console.log(userData);
