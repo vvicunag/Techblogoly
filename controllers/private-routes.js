@@ -38,8 +38,9 @@ router.get("/post/:id", async (req, res) => {
       },
     ],
     });
+    post = post.get({plain: true});
     console.log(post);
-    res.json(post);
+    res.render("post", post);
   }
   catch (err) {
     console.log(err);

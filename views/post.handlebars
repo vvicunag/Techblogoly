@@ -1,0 +1,22 @@
+
+<div class="card shadow p-3 mb-5 bg-body rounded" style="">
+    <div class="card-body">
+        <h5 class="card-title">{{user.username}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{formatDate created_on}}</h6>
+        <p class="card-text">{{post_content}}</p>
+    </div>
+    {{#each comments as |comment|}}
+        <div class="card" style="">
+        <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Comment by {{user.username}}, on: {{formatDate created_on}}</h6>
+        <p class="card-text">{{comment_content}}</p>
+        </div>
+        </div>
+        <br>
+    {{/each}}
+</div>
+
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon1">Comment</button>
+  <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+</div>

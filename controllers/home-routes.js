@@ -75,4 +75,21 @@ router.post("/login", async (req, res) => {
   };
 });
 
+// POST request to sign up
+router.post("/signup", async (req, res) => {
+  try {
+    if(req.body.username && req.body.password) {
+      await User.create({
+        username: req.body.username,
+        password: req.body.password,
+      });
+      return res.status(200).json({message: "User successfully created"});
+    };
+  }
+  catch (error) {
+    console.log(error);
+    return res.status(500).json({error: "Failed to create user"});
+  }
+})
+
 module.exports = router;

@@ -4,8 +4,8 @@
       <h5 class="card-title">{{user.username}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">Posted on: {{formatDate created_on}}</h6>
       <p class="card-text">{{post_content}}</p>
-      <a href="#" class="card-link">Comment</a>
-      <a href="#" class="card-link">See post</a>
+      <a href="/post/{{id}}" class="card-link">Comment</a>
+      <a href="/post/{{id}}" class="card-link">See post</a>
     </div>
     {{#each comments as |comment|}}
       <div class="card" style="">
