@@ -63,6 +63,25 @@ router.post("/post", async (req, res) => {
     console.log(error);
     return res.status(500).json({error: "Failed to create post"});
   }
+});
+
+// POST request to create a comment
+router.post("/comment/:post", async (req, res) => {
+  //const id = req.session.userId;
+  const id = 1;
+  try {
+    const newComment = {
+      comment_content: req.body.comment_content,
+      user_id: id,
+      post_id: req.params.post,
+    };
+    savedComment = await Comment.create(newComment);
+    return res.status(200).json({message: "Comment successfully created"});
+  }
+  catch (error) {
+    console.log(error);
+    return res.status(500).json({error: "Failed to create comment"});
+  }
 })
 
 module.exports = router;
