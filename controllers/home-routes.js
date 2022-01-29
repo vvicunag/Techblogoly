@@ -20,29 +20,30 @@ router.get("/", async (req, res) => {
     });
     const posts = postData.map((post) => post.get({ plain: true }));
     res.render("home", { posts });
-  } catch {
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
-//get request to render login page
+//GET request to render login page
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// get request to logout
+// GET request to logout
 router.get("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      return res.status(200).json({data: "Logout successful."});
+      res.redirect("/");
+      return
     });
   } else {
     return res.status(500).json({data: "Logout failed."})
   }
 });
 
-// post request to log in
+// POST request to log in
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
@@ -69,7 +70,7 @@ router.post("/login", async (req, res) => {
     return res.status(200).json({message: "You are logged in!" });
   }
   catch (error) {
-    console.error(error.message);
+    console.log(error);
     return res.status(500).json({ error: "Failed login." });
   };
 });

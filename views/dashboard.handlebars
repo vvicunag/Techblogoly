@@ -1,12 +1,12 @@
-<h1>Your posts, {{userData.username}}:</h1>
+<h1>Your posts, {{dashboardData.username}}:</h1>
 <br>
 
-{{#each userData.posts as |post|}}
+{{#each dashboardData.posts as |post|}}
   <div class="card shadow p-3 mb-5 bg-body rounded" style="">
     <div class="card-body">
       <h5 class="card-title"></h5>
-      <h6 class="card-subtitle mb-2 text-muted">Posted on: {{formatDate dataValues.created_on}}</h6>
-      <p class="card-text">{{dataValues.post_content}}</p>
+      <h6 class="card-subtitle mb-2 text-muted">Posted on: {{formatDate created_on}}</h6>
+      <p class="card-text">{{post_content}}</p>
       <a href="#" class="card-link">Comment</a>
       <a href="#" class="card-link">Another link</a>
     </div>
@@ -14,11 +14,11 @@
   {{/each}}
   <br>
   <h1>Your comments:</h1>
-      {{#each userData.comments as |comment|}}
+      {{#each dashboardData.comments as |comment|}}
       <div class="card" style="">
       <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted">Comment written on: {{formatDate dataValues.created_on}}</h6>
-        <p class="card-text">{{dataValues.comment_content}}</p>
+        <h6 class="card-subtitle mb-2 text-muted">Comment written on: {{formatDate created_on}}</h6>
+        <p class="card-text">{{comment_content}}</p>
       </div>
       </div>
       <br>

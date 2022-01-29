@@ -1,29 +1,51 @@
 const router = require("express").Router();
 const { Post, Comment, User } = require("../models");
 
-//router.use("/dashboard",dashboardRouter);
-
+// GET request for dashboard
 router.get("/dashboard", async (req, res) => {
     try{
       //const id = req.session.userId;
       const id = 1
-      const dashboardData = await User.findByPk(id, {
+      let dashboardData = await User.findByPk(id, {
         attributes: { exclude: ['password'] },
         include: [{model: Post}, {model: Comment}],
       });
-      userData = dashboardData.dataValues;
-      console.log(userData);
-      //dashboardData = dashboardData.get({plain: true});
-      //dashboardData = dashboardData.dataValues;
+      dashboardData = dashboardData.get({plain: true});
       res.render("dashboard", {
           loggedIn: req.session.loggedIn,
-          userData,
+          dashboardData,
       });
     }
-    catch {
+    catch (err) {
+      console.log(err);
     return res.status(500).json({ error: "Failed to load dashboard" });
     }
   });
+
+  // GET request to display a post
+router.get("/post/:id", async (req, res) => {
+  try {
+    const postId = req.params.id;
+    let post = await Post.findByPk(postId, {include: [
+      {
+        model: Comment,
+        attributes: ["comment_content", "user_id", "created_on"],
+        include: [{model: User, attributes: ["username"],}]
+      },
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    });
+    console.log(post);
+    res.json(post);
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Failed to load post" });
+  }
+});
 
 module.exports = router;
 
