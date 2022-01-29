@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Post, Comment, User } = require("../models");
 
-// GET route main
+// GET request to render main
 router.get("/", async (req, res) => {
   // This method is rendering the 'home' Handlebars.js template
   try {
@@ -92,4 +92,21 @@ router.post("/signup", async (req, res) => {
   }
 })
 
+// DELETE request to delete user
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.status(200).json({message: "Succesfully deleted user"});
+  }
+  catch (error) {
+    console.log(error);
+    return res.status(500).json({error: "Failed to delete user"});
+  }
+})
+
 module.exports = router;
+ 
