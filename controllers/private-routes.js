@@ -47,6 +47,23 @@ router.get("/post/:id", async (req, res) => {
     return res.status(500).json({ error: "Failed to load post" });
   }
 });
+ // POST request to create a post
+router.post("/post", async (req, res) => {
+  //const id = req.session.userId;
+  const id = 1;
+  try {
+    const newPost = {
+      post_content: req.body.post_content,
+      user_id: id,
+    };
+    savedPost = await Post.create(newPost);
+    return res.status(200).json({message: "Post successfully created"});
+  }
+  catch (error) {
+    console.log(error);
+    return res.status(500).json({error: "Failed to create post"});
+  }
+})
 
 module.exports = router;
 
