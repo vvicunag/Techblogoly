@@ -1,7 +1,7 @@
 
 <div class="card shadow p-3 mb-5 bg-body rounded" style="">
     <div class="card-body">
-        <h5 class="card-title">{{user.username}}</h5>
+        <h5 id="identify-post" data="{{id}}" class="card-title">{{user.username}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Posted on: {{formatDate created_on}}</h6>
         <p class="card-text">{{post_content}}</p>
     </div>
@@ -17,6 +17,7 @@
 </div>
 
 <div class="input-group mb-3">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon1">Comment</button>
-  <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+  <button class="btn btn-outline-secondary" type="button" id="comment-btn">Comment</button>
+  <input id="comment-input" type="text" class="form-control" placeholder="What are you thinking?" aria-label="Example text with button addon" aria-describedby="button-addon1">
 </div>
+<script src="/js/post.js"></script>

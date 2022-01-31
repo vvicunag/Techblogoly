@@ -82,7 +82,15 @@ router.post("/comment/:post", async (req, res) => {
     console.log(error);
     return res.status(500).json({error: "Failed to create comment"});
   }
-})
+});
+
+// PUT request to update post
+
+// PUT request to update comment
+
+// DELETE request to delete a post
+
+// DELETE request to delete a comment
 
 module.exports = router;
 
